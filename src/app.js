@@ -13,6 +13,7 @@ const app = function(inject) {
   app.use(bodyParser())
 
   app.config = inject.config
+  app.chat = new inject.BlockChat()
 
   app.db = inject.db
   if (app.db.connect != null && typeof app.db.connect === 'function')
@@ -32,6 +33,7 @@ const app = function(inject) {
 app.GetDefaultInjection = function(allowConnect) {
   const inject = {
     config: require('../config'),
+    BlockChat: require('./BlockChat'),
     
     db: require('./lib/db'),
     routes: {

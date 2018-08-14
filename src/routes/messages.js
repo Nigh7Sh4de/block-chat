@@ -7,12 +7,21 @@ module.exports = class Messages extends Router {
     super()
     this.app = app
 
+    this.get('/messages/:to', this.newMessage.bind(this))
     this.post('/messages', this.newMessage.bind(this))
   }
 
-  async newMessage(ctx) {
+  async getMessages(ctx) {
+    const data = this.app.chat.get(ctx.request.params.to)
     return ctx.body = {
-      data: 'adding new message'
+      data,
+    }
+  }
+
+  async newMessage(ctx) {
+    const result = this.app.chat.add(ctx.request.body)
+    return ctx.body = {
+      result,
     }
   }
 }
