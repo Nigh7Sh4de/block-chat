@@ -1,0 +1,43 @@
+{
+  "name": "block-chat",
+  "version": "1.0.0",
+  "description": "A linked-list connected with hash pointers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha ./test/**/*.test.js",
+    "debugTest": "node --inspect-brk ./node_modules/.bin/_mocha.cmd ./src/tests/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nigh7Sh4de/chained-list.git"
+  },
+  "keywords": [
+    "linked",
+    "list",
+    "blockchain",
+    "hash",
+    "pointers"
+  ],
+  "author": "nigh7sh4de",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nigh7Sh4de/chained-list/issues"
+  },
+  "homepage": "https://github.com/Nigh7Sh4de/chained-list#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.2.7",
+    "node-rsa": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.5"
+  }
+}
