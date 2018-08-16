@@ -2,6 +2,8 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const CORS = require('koa2-cors')
 
+const Message = require('../src/models/Message')
+
 const app = function(inject) {
 
   const app = new Koa()
@@ -13,7 +15,11 @@ const app = function(inject) {
   app.use(bodyParser())
 
   app.config = inject.config
-  app.chat = new inject.BlockChat()
+  app.chat = new inject.BlockChat([
+    new Message({
+      to: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMLxTeyJ6xbcMjnj54QV8ovSdtMM/rja\nHogBU1vdOOFlwnD31vu8vBKfJe7aYN+y4Y5pL18WZkFcGEVd7YoN0FMCAwEAAQ==\n-----END PUBLIC KEY-----',
+    })
+  ])
 
   app.db = inject.db
   if (app.db.connect != null && typeof app.db.connect === 'function')

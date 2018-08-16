@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha ./test/**/*.test.js",
-    "debugTest": "node --inspect-brk ./node_modules/.bin/_mocha.cmd ./src/tests/**/*.test.js"
+    "debugTest": "mocha --inspect-brk ./src/tests/**/*.test.js"
   },
   "repository": {
     "type": "git",
