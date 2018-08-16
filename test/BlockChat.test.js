@@ -59,7 +59,7 @@ describe('BlockChat:', () => {
       const chat = new BlockChat([ message1 ])
       
       const prevHash = message1.hash
-      const prevSignature = new Key(secret).sign(prevHash)
+      const prevSignature = new Key(secret).sign(prevHash).toString('base64')
       const message2 = new Message({
         prevHash,
         prevSignature,
@@ -97,7 +97,7 @@ describe('BlockChat:', () => {
       const chat = new BlockChat()
       
       const prevHash = 'invalid previous hash'
-      const prevSignature = new Key(secret).sign(prevHash)
+      const prevSignature = new Key(secret).sign(prevHash).toString('base64')
       const message2 = new Message({
         prevHash,
         prevSignature,
@@ -132,19 +132,12 @@ describe('BlockChat:', () => {
 
       const chat = new BlockChat([ message1, message2 ])
       
-      const prevHash2 = message2.hash
-      const signature3 = new Key(secret).sign(prevHash2)
-      const message3 = new Message({
-        text,
-        to: public,
-        hash: prevHash2,
-        signature: signature3,
-      })
+      const message3 = message2
 
       const result = chat.add(message3)
 
       expect(result).to.be.false
-      expect(chat.list).to.not.contain(message3)
+      expect(chat.list).to.have.lengthOf(2)
     })
 
     it('will fail with an invalid signature', () => {

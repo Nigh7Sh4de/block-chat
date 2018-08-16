@@ -25,7 +25,8 @@ module.exports = class BlockChat {
         return false
 
       const prevMessages = this.list.filter(m => m.hash === message.prevHash)
-      if (prevMessages.length !== 1)
+      const doubleSpend = this.list.find(m => m.prevHash === message.prevHash)
+      if (prevMessages.length !== 1 || doubleSpend)
         return false
       
       const key = new Key()

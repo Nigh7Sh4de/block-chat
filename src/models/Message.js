@@ -6,11 +6,16 @@ var Message = new Schema({
   text: String,
   to: String,
   prevHash: String,
-  prevSignature: Buffer,
+  prevSignature: {
+    type: Buffer,
+    set(value) {
+      return Buffer.from(value.toString(), 'base64')
+    }
+  },
   hash: {
     type: String,
     get() {
-      const raw = `${this.text}${this.to}${this._id}`
+      const raw = `${this.text}${this.to}`//${this._id}
       return Crypto.createHash('sha256').update(raw).digest('base64')
     },
   },
