@@ -7,15 +7,19 @@ var Message = new Schema({
   to: String,
   prevHash: String,
   prevSignature: Buffer,
+  hash: {
+    type: String,
+    get() {
+      const raw = `${this.text}${this.to}${this._id}`
+      return Crypto.createHash('sha256').update(raw).digest('base64')
+    },
+  },
+  valid: {
+    type: Boolean,
+    get() {
+      return !!(this.text && this.to)
+    },
+  },
 })
-
-Message.methods.getHash = function() {
-  const raw = `${this.text}${this.to}`
-  return Crypto.createHash('sha256').update(raw).digest('base64')
-}
-
-Message.methods.valid = function() {
-  return this.text && this.to
-}
 
 module.exports = mongoose.model('Message', Message)

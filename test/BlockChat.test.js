@@ -58,7 +58,7 @@ describe('BlockChat:', () => {
       })
       const chat = new BlockChat([ message1 ])
       
-      const prevHash = message1.getHash()
+      const prevHash = message1.hash
       const prevSignature = new Key(secret).sign(prevHash)
       const message2 = new Message({
         prevHash,
@@ -121,7 +121,7 @@ describe('BlockChat:', () => {
         to: public,
       })
       
-      const prevHash1 = message1.getHash()
+      const prevHash1 = message1.hash
       const prevSignature2 = new Key(secret).sign(prevHash1)
       const message2 = new Message({
         text,
@@ -132,7 +132,7 @@ describe('BlockChat:', () => {
 
       const chat = new BlockChat([ message1, message2 ])
       
-      const prevHash2 = message2.getHash()
+      const prevHash2 = message2.hash
       const signature3 = new Key(secret).sign(prevHash2)
       const message3 = new Message({
         text,
@@ -161,7 +161,7 @@ describe('BlockChat:', () => {
       const message2 = new Message({
         text,
         to: public,
-        prevHash: message1.getHash(),
+        prevHash: message1.hash,
         prevSignature,
       })
 

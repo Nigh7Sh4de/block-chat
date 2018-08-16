@@ -35,15 +35,16 @@ describe('messages route', function() {
 
   it('GET can get messages for a public key', function() {
     const public = '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMLxTeyJ6xbcMjnj54QV8ovSdtMM/rja\nHogBU1vdOOFlwnD31vu8vBKfJe7aYN+y4Y5pL18WZkFcGEVd7YoN0FMCAwEAAQ==\n-----END PUBLIC KEY-----'
-    const expectedResult = [ new Message({
+    const list = [ new Message({
       to: public,
     }) ]
+    const JSONList = list.map(i => i.toJSON({ getters: true }))
     app.chat = {
-      get: spy(() => expectedResult),
+      list,
     }
     const ctx = {
       request: {
-        params: {
+        body: {
           to: public,
         },
       },
@@ -51,6 +52,6 @@ describe('messages route', function() {
 
     app.route.messages.getMessages(ctx)
 
-    expect(ctx.body).to.have.property('data', expectedResult)
+    expect(ctx.body.data).to.have.deep.members(JSONList)
   })
 })  

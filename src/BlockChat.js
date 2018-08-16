@@ -21,16 +21,16 @@ module.exports = class BlockChat {
 
   add(message) {
     try {
-      if (!message.valid())
+      if (!message.valid)
         return false
 
-      const prevMessages = this.list.filter(m => m.getHash() === message.prevHash)
+      const prevMessages = this.list.filter(m => m.hash === message.prevHash)
       if (prevMessages.length !== 1)
         return false
       
       const key = new Key()
       key.importKey(prevMessages[0].to, 'public')
-      if (!key.verify(prevMessages[0].getHash(), message.prevSignature))
+      if (!key.verify(prevMessages[0].hash, message.prevSignature))
         return false
       
       this.list.push(message)
