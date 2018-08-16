@@ -1,2 +1,2 @@
-# chained-list
-A nodejs class for a chained-list (linked list with hash pointers)
+# block-chat
+A nodejs class for a block-chat (linked list with hash pointers)

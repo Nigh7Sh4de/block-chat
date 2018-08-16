@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nigh7Sh4de/chained-list.git"
+    "url": "git+https://github.com/Nigh7Sh4de/block-chat.git"
   },
   "keywords": [
     "linked",
@@ -22,9 +22,9 @@
   "author": "nigh7sh4de",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Nigh7Sh4de/chained-list/issues"
+    "url": "https://github.com/Nigh7Sh4de/block-chat/issues"
   },
-  "homepage": "https://github.com/Nigh7Sh4de/chained-list#readme",
+  "homepage": "https://github.com/Nigh7Sh4de/block-chat#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
